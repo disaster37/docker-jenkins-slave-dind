@@ -2,14 +2,14 @@ FROM jpetazzo/dind
 
 MAINTAINER Decheng Zhang <killercentury@gmail.com>
 
-ENV SWARM_CLIENT_VERSION 2.0
-ENV DOCKER_COMPOSE_VERSION 1.3.3
+ENV SWARM_CLIENT_VERSION 2.1
+ENV DOCKER_COMPOSE_VERSION 1.8.1
 
 # Add a Jenkins user with permission to run docker commands
 RUN useradd -r -m -G docker jenkins
 
 # Install necessary packages
-RUN apt-get update && apt-get install -y curl zip openjdk-7-jre-headless supervisor && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y make curl zip openjdk-7-jre-headless supervisor && rm -rf /var/lib/apt/lists/*
 
 # Install Jenkins Swarm Client
 RUN wget -q http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}-jar-with-dependencies.jar -P /home/jenkins
